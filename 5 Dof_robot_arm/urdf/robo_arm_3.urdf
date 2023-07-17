@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot
+  name="robo_arm_3">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00016684 -1.249E-16 0.019993"
+        rpy="0 0 0" />
+      <mass
+        value="1.7179" />
+      <inertia
+        ixx="0.011863"
+        ixy="-2.4892E-13"
+        ixz="-1.5379E-07"
+        iyy="0.011867"
+        iyz="-4.7099E-20"
+        izz="0.023274" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="shoulder">
+    <inertial>
+      <origin
+        xyz="2.7756E-17 -1.3878E-17 0.023047"
+        rpy="0 0 0" />
+      <mass
+        value="0.48097" />
+      <inertia
+        ixx="0.0015602"
+        ixy="3.7227E-19"
+        ixz="-1.6832E-21"
+        iyy="0.00081984"
+        iyz="1.9916E-19"
+        izz="0.0018718" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/shoulder.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/shoulder.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="base_shoulder"
+    type="revolute">
+    <origin
+      xyz="0 0 0.04"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="shoulder" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="upper_arm">
+    <inertial>
+      <origin
+        xyz="0.1501 -0.00030662 0.020598"
+        rpy="0 0 0" />
+      <mass
+        value="1.8816" />
+      <inertia
+        ixx="0.0017897"
+        ixy="6.4956E-05"
+        ixz="1.0733E-06"
+        iyy="0.022908"
+        iyz="-3.3014E-09"
+        izz="0.022012" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/upper_arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/upper_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="shoulder_upperArm"
+    type="revolute">
+    <origin
+      xyz="0 0 0.06"
+      rpy="1.5708 0 0" />
+    <parent
+      link="shoulder" />
+    <child
+      link="upper_arm" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="lower_arm">
+    <inertial>
+      <origin
+        xyz="0.11955 -0.0016636 0.0047581"
+        rpy="0 0 0" />
+      <mass
+        value="1.0332" />
+      <inertia
+        ixx="0.00065166"
+        ixy="0.00011481"
+        ixz="-5.348E-06"
+        iyy="0.0081953"
+        iyz="8.1377E-08"
+        izz="0.0085081" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/lower_arm.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/lower_arm.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="upperArm_lowerArm"
+    type="revolute">
+    <origin
+      xyz="0.38348 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="upper_arm" />
+    <child
+      link="lower_arm" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.094"
+      upper="0"
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="wrist">
+    <inertial>
+      <origin
+        xyz="-0.0061465 0.0021995 0.053642"
+        rpy="0 0 0" />
+      <mass
+        value="0.12761" />
+      <inertia
+        ixx="7.8389E-05"
+        ixy="3.0598E-07"
+        ixz="-3.2456E-07"
+        iyy="3.8237E-05"
+        iyz="1.5129E-07"
+        izz="6.1611E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/wrist.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/wrist.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="lowerArm_wrist"
+    type="revolute">
+    <origin
+      xyz="0.27314 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="lower_arm" />
+    <child
+      link="wrist" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-2.094"
+      upper="0"
+      effort="1000"
+      velocity="10" />
+  </joint>
+  <link
+    name="gripper_1">
+    <inertial>
+      <origin
+        xyz="-0.0012049 -0.0005436 0.10591"
+        rpy="0 0 0" />
+      <mass
+        value="0.26872" />
+      <inertia
+        ixx="0.00028233"
+        ixy="4.2706E-07"
+        ixz="2.0985E-06"
+        iyy="0.00028381"
+        iyz="5.7371E-07"
+        izz="9.3091E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/gripper_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0 0.5" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robo_arm_3/meshes/gripper_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="wrist_gripper_1"
+    type="revolute">
+    <origin
+      xyz="-0.019204 -0.0099756 0.064416"
+      rpy="1.5708 0 1.5708" />
+    <parent
+      link="wrist" />
+    <child
+      link="gripper_1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="0"
+      upper="3.14"
+      effort="1000"
+      velocity="10" />
+  </joint>
+<gazebo>
+  <plugin name= "gazebo_ros_control" filename = "libgazebo_ros_control.so"/>
+  <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+</gazebo>  
+</robot>
+
